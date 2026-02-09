@@ -1,0 +1,32 @@
+{
+  "image": "mcr.microsoft.com/devcontainers/universal:2",
+  "features": {}
+}from flask import Flask, render_template
+from flask_socketio import SocketIO, send
+
+app = Flask(__name__)
+socketio = SocketIO(app, cors_allowed_origins="*")
+
+@socketio.on('message')
+def handle_message(msg):
+    print(f"Сообщение: {msg}")
+    send(msg, broadcast=True) # Отправляет всем участникам
+
+if __name__ == '__main__':
+    socketio.run(app, debug=True)
+<script src="https://cdn.socket.io"></script>
+<script>
+    const socket = io();
+    function sendMessage() {
+        const msg = document.getElementById('msg').value;
+        socket.emit('message', msg);
+    }
+    socket.on('message', msg => {
+        const item = document.createElement('li');
+        item.textContent = msg;
+        document.getElementById('messages').appendChild(item);
+    });
+</script>
+
+<input id="msg"><button onclick="sendMessage()">Отправить</button>
+<ul id="messages"></ul>
