@@ -1,3 +1,4 @@
+![IMG_20260305_223310](https://github.com/user-attachments/assets/b9902eab-3c97-465a-8f79-3ee2c6868136)
 # Ghost-Messenger
 Мессенджер конфиденциальный данные хранятся нигде
 # ghost_messenger.py
